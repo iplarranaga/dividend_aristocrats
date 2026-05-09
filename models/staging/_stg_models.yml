@@ -40,6 +40,7 @@ models:
         description: "Importe bruto del dividendo en la moneda local (generalmente USD)"
         tests:
           - not_null
+          - not_negative
 
   - name: stg_fundamentals
     description: >
@@ -75,9 +76,18 @@ models:
         description: "Años consecutivos de crecimiento del dividendo"
         tests: [not_null]
       - name: current_dividend_yield
-        description: "Yield actual (dividendo / precio), expresado como ratio decimal (0.02 = 2%)"
+        description: "Yield actual como ratio decimal (0.02 = 2%)"
+        tests:
+          - not_negative
       - name: payout_ratio
-        description: "Ratio payout (dividendos / beneficio neto)"
+        description: "Ratio payout (dividendos / beneficio neto) en decimal (1.0 = 100%)"
+        tests:
+          - between_values:
+              arguments:
+                min_value: 0
+                max_value: 2.0
+              config:
+                severity: warn
       - name: trailing_pe
         description: "PER trailing (precio / BPA últimos 12 meses)"
       - name: ev_to_ebitda

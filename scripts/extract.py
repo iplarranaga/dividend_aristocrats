@@ -85,7 +85,7 @@ def fetch_fundamentals(ticker: str, consecutive_years: int) -> dict:
         "fifty_two_week_high":   info.get("fiftyTwoWeekHigh"),
         "fifty_two_week_low":    info.get("fiftyTwoWeekLow"),
         "currency":              info.get("currency", "USD"),
-        "extracted_at":          datetime.now(timezone.utc).isoformat(),
+        "extracted_at":          datetime.now(timezone.utc).replace(tzinfo=None),
     }
 
 

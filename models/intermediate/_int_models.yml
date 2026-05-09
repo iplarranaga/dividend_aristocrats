@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: int_annual_dividends
+    description: >
+      Dividendo anual total por empresa y año, con número de pagos
+      y crecimiento YoY. Base para CAGR y yield histórico.
+    columns:
+      - name: ticker
+        description: "Símbolo bursátil"
+        tests: [not_null]
+      - name: dividend_year
+        description: "Año de los pagos agregados"
+        tests: [not_null]
+      - name: annual_dividend
+        description: "Suma de todos los dividendos pagados en el año (USD)"
+        tests: [not_null]
+      - name: payment_count
+        description: "Número de pagos de dividendo en el año (típicamente 4)"
+        tests: [not_null]
+      - name: prior_year_dividend
+        description: "Dividendo anual del año anterior (null para el primer año)"
+      - name: yoy_growth_pct
+        description: "Crecimiento YoY en % (null si no hay año previo)"
+
+  - name: int_dividend_cagr
+    description: >
+      CAGR del dividendo a 5 y 10 años por empresa.
+      Año de referencia: último año completo (año actual − 1).
+    columns:
+      - name: ticker
+        description: "Símbolo bursátil — clave única"
+        tests: [not_null, unique]
+      - name: dividend_cagr_5y
+        description: "Tasa de crecimiento anual compuesto del dividendo a 5 años"
+      - name: dividend_cagr_10y
+        description: "Tasa de crecimiento anual compuesto del dividendo a 10 años"
+
+  - name: int_yield_history
+    description: >
+      Yield histórico anual (dividendo / precio fin de año) más media
+      móvil de 5 años. Señal de compra cuando yield actual > yield_5y_rolling_avg.
+    columns:
+      - name: ticker
+        tests: [not_null]
+      - name: dividend_year
+        tests: [not_null]
+      - name: annual_dividend
+        tests: [not_null]
+      - name: year_end_price
+        description: "Último precio de cierre del año"
+      - name: dividend_yield
+        description: "Yield del año: dividendo_anual / precio_fin_año"
+        tests: [not_null]
+      - name: yield_5y_rolling_avg
+        description: "Media móvil del yield de los últimos 5 años (incluido el actual)"

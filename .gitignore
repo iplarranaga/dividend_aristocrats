@@ -1,0 +1,31 @@
+# dbt
+target/
+dbt_packages/
+logs/
+
+# DuckDB — base de datos local, no va al repo
+*.duckdb
+*.duckdb.wal
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Datos crudos generados por el script de extracción
+data/*.parquet
+
+# macOS
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
+
+# Variables de entorno
+.env

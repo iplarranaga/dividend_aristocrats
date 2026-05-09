@@ -1,0 +1,10 @@
+dividend_aristocrats:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: dividend_aristocrats.duckdb
+      threads: 4
+      extensions:
+        - httpfs
+        - parquet

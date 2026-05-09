@@ -1,0 +1,86 @@
+version: 2
+
+models:
+  - name: stg_prices
+    description: "Precios OHLCV diarios ajustados, limpios y tipados"
+    columns:
+      - name: ticker
+        description: "Símbolo bursátil (ej. KO, PG)"
+        tests:
+          - not_null
+      - name: price_date
+        description: "Fecha de cotización"
+        tests:
+          - not_null
+      - name: close_price
+        description: "Precio de cierre ajustado por splits y dividendos"
+        tests:
+          - not_null
+      - name: open_price
+        tests: [not_null]
+      - name: high_price
+        tests: [not_null]
+      - name: low_price
+        tests: [not_null]
+      - name: volume
+        tests: [not_null]
+
+  - name: stg_dividends
+    description: "Historial de dividendos pagados por acción, filtrados y tipados"
+    columns:
+      - name: ticker
+        description: "Símbolo bursátil"
+        tests:
+          - not_null
+      - name: dividend_date
+        description: "Fecha de pago o ex-dividend"
+        tests:
+          - not_null
+      - name: dividend_amount
+        description: "Importe bruto del dividendo en la moneda local (generalmente USD)"
+        tests:
+          - not_null
+
+  - name: stg_fundamentals
+    description: >
+      Fundamentals punto en el tiempo por empresa. Sector normalizado a GICS
+      desde el seed; el resto de campos procede de yfinance (.info).
+    columns:
+      - name: ticker
+        description: "Símbolo bursátil — clave primaria"
+        tests:
+          - not_null
+          - unique
+      - name: company_name
+        description: "Nombre completo de la empresa"
+        tests: [not_null]
+      - name: sector
+        description: "Sector GICS (fuente: seeds/aristocrats.csv)"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - Health Care
+                  - Information Technology
+                  - Financials
+                  - Materials
+                  - Industrials
+                  - Consumer Staples
+                  - Consumer Discretionary
+                  - Energy
+                  - Utilities
+                  - Real Estate
+      - name: consecutive_years
+        description: "Años consecutivos de crecimiento del dividendo"
+        tests: [not_null]
+      - name: current_dividend_yield
+        description: "Yield actual (dividendo / precio), expresado como ratio decimal (0.02 = 2%)"
+      - name: payout_ratio
+        description: "Ratio payout (dividendos / beneficio neto)"
+      - name: trailing_pe
+        description: "PER trailing (precio / BPA últimos 12 meses)"
+      - name: ev_to_ebitda
+        description: "EV/EBITDA — múltiplo de valoración empresarial"
+      - name: currency
+        tests: [not_null]

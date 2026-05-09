@@ -20,6 +20,15 @@ vars:
   dividend_yield_lookback_years: 5
   min_consecutive_years: 25
 
+seeds:
+  dividend_aristocrats:
+    aristocrats:
+      +column_types:
+        ticker: varchar
+        company_name: varchar
+        sector: varchar
+        consecutive_years: integer
+
 models:
   dividend_aristocrats:
     staging:

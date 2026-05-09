@@ -1,0 +1,29 @@
+version: 2
+
+sources:
+  - name: raw
+    description: "Archivos Parquet generados por scripts/extract.py (yfinance)"
+    schema: main
+    tables:
+      - name: raw_prices
+        description: "Precios OHLCV diarios ajustados, 10 años, 58 tickers"
+        meta:
+          external_location: "read_parquet('data/raw_prices.parquet')"
+        freshness:
+          warn_after: {count: 7, period: day}
+          error_after: {count: 30, period: day}
+        loaded_at_field: date
+
+      - name: raw_dividends
+        description: "Historial de pagos de dividendos por acción"
+        meta:
+          external_location: "read_parquet('data/raw_dividends.parquet')"
+
+      - name: raw_fundamentals
+        description: "Fundamentals punto en el tiempo: PE, EV/EBITDA, payout ratio, yield"
+        meta:
+          external_location: "read_parquet('data/raw_fundamentals.parquet')"
+        freshness:
+          warn_after: {count: 7, period: day}
+          error_after: {count: 30, period: day}
+        loaded_at_field: extracted_at

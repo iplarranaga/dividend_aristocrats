@@ -1,0 +1,87 @@
+version: 2
+
+models:
+  - name: mart_aristocrats_overview
+    description: >
+      Vista general del universo completo de Dividend Aristocrats.
+      Una fila por empresa con precio actual, valoración, yield y CAGR.
+    columns:
+      - name: ticker
+        description: "Símbolo bursátil — clave primaria"
+        tests: [not_null, unique]
+      - name: company_name
+        tests: [not_null]
+      - name: sector
+        tests: [not_null]
+      - name: consecutive_years
+        tests: [not_null]
+      - name: current_yield_pct
+        description: "Yield actual en % (dividendo_anual / precio_actual * 100)"
+      - name: yield_5y_avg_pct
+        description: "Media del yield histórico de los últimos 5 años en %"
+      - name: cagr_5y_pct
+        description: "CAGR del dividendo a 5 años en %"
+      - name: cagr_10y_pct
+        description: "CAGR del dividendo a 10 años en %"
+      - name: payout_ratio_pct
+        description: "Ratio payout en % (dividendos / BPA)"
+
+  - name: mart_dividend_growth
+    description: >
+      Análisis de crecimiento del dividendo por empresa.
+      CAGR 5y/10y y estadísticas de crecimiento YoY reciente.
+    columns:
+      - name: ticker
+        tests: [not_null, unique]
+      - name: company_name
+        tests: [not_null]
+      - name: cagr_5y_pct
+        description: "CAGR del dividendo a 5 años en %"
+      - name: cagr_10y_pct
+        description: "CAGR del dividendo a 10 años en %"
+      - name: avg_yoy_5y_pct
+        description: "Crecimiento YoY medio de los últimos 5 años en %"
+      - name: years_positive_growth
+        description: "Número de años con crecimiento positivo en los últimos 5"
+
+  - name: mart_valuation
+    description: >
+      Ratios de valoración por empresa con contexto sectorial.
+      Incluye PE, EV/EBITDA, payout ratio y comparativa vs mediana del sector.
+    columns:
+      - name: ticker
+        tests: [not_null, unique]
+      - name: trailing_pe
+        description: "PER trailing (precio / BPA últimos 12 meses)"
+      - name: ev_to_ebitda
+        description: "EV/EBITDA — múltiplo de valoración empresarial"
+      - name: payout_ratio_pct
+        description: "Payout ratio en % — debe estar entre 0 y 200 para ser razonable"
+      - name: below_sector_median_pe
+        description: "True si el PE de la empresa está por debajo de la mediana sectorial"
+
+  - name: mart_sectors
+    description: >
+      Distribución y métricas agregadas por sector GICS.
+      Una fila por sector con estadísticas de valoración, yield y crecimiento.
+    columns:
+      - name: sector
+        tests: [not_null, unique]
+      - name: company_count
+        tests: [not_null]
+      - name: avg_consecutive_years
+        description: "Media de años consecutivos de aumento de dividendo en el sector"
+
+  - name: mart_buy_signals
+    description: >
+      Empresas donde el yield actual supera su propia media histórica de 5 años.
+      Señal de que la acción cotiza más barata de lo habitual en términos de dividendo.
+    columns:
+      - name: ticker
+        tests: [not_null, unique]
+      - name: current_yield_pct
+        description: "Yield actual en %"
+      - name: yield_5y_avg_pct
+        description: "Media histórica 5 años del yield en %"
+      - name: yield_premium_pct
+        description: "Cuánto supera el yield actual a su media en % (señal de entrada)"

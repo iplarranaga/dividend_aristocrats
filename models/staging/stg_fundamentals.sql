@@ -30,8 +30,8 @@ joined as (
         cast(r.ebitda as double)                    as ebitda,
         cast(r.enterprise_to_ebitda as double)      as ev_to_ebitda,
 
-        -- dividend metrics
-        cast(r.dividend_yield as double)            as current_dividend_yield,
+        -- dividend metrics (yfinance devuelve dividendYield en %, lo normalizamos a decimal)
+        cast(r.dividend_yield as double) / 100.0    as current_dividend_yield,
         cast(r.dividend_rate as double)             as annual_dividend_rate,
         cast(r.payout_ratio as double)              as payout_ratio,
 

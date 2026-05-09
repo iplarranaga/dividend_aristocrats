@@ -1,0 +1,59 @@
+ticker,company_name,sector,consecutive_years
+ABT,Abbott Laboratories,Health Care,52
+ABBV,AbbVie Inc,Health Care,52
+ADP,Automatic Data Processing,Information Technology,49
+AFL,Aflac Incorporated,Financials,42
+AMCR,Amcor plc,Materials,40
+AOS,A. O. Smith Corporation,Industrials,31
+APD,Air Products and Chemicals,Materials,42
+BDX,Becton Dickinson and Company,Health Care,52
+BF-B,Brown-Forman Corporation,Consumer Staples,40
+BRO,Brown & Brown Inc,Financials,31
+CAH,Cardinal Health Inc,Health Care,27
+CAT,Caterpillar Inc,Industrials,31
+CB,Chubb Limited,Financials,31
+CHD,Church & Dwight Co Inc,Consumer Staples,28
+CINF,Cincinnati Financial Corporation,Financials,64
+CL,Colgate-Palmolive Company,Consumer Staples,62
+CLX,The Clorox Company,Consumer Staples,47
+CTAS,Cintas Corporation,Industrials,41
+CVX,Chevron Corporation,Energy,37
+DOV,Dover Corporation,Industrials,68
+ECL,Ecolab Inc,Materials,33
+ED,Consolidated Edison Inc,Utilities,50
+EMR,Emerson Electric Co,Industrials,48
+ESS,Essex Property Trust Inc,Real Estate,30
+FAST,Fastenal Company,Industrials,25
+FDS,FactSet Research Systems Inc,Information Technology,25
+FRT,Federal Realty Investment Trust,Real Estate,56
+GD,General Dynamics Corporation,Industrials,33
+GPC,Genuine Parts Company,Consumer Discretionary,68
+GWW,W.W. Grainger Inc,Industrials,52
+HRL,Hormel Foods Corporation,Consumer Staples,58
+IBM,International Business Machines Corp,Information Technology,28
+ITW,Illinois Tool Works Inc,Industrials,61
+JNJ,Johnson & Johnson,Health Care,62
+KMB,Kimberly-Clark Corporation,Consumer Staples,52
+KO,The Coca-Cola Company,Consumer Staples,62
+LIN,Linde plc,Materials,31
+LOW,Lows Companies Inc,Consumer Discretionary,42
+MCD,McDonalds Corporation,Consumer Discretionary,48
+MDT,Medtronic plc,Health Care,47
+MKC,McCormick & Company Inc,Consumer Staples,38
+MO,Altria Group Inc,Consumer Staples,54
+NDSN,Nordson Corporation,Industrials,61
+NEE,NextEra Energy Inc,Utilities,28
+NUE,Nucor Corporation,Materials,51
+O,Realty Income Corporation,Real Estate,28
+PEP,PepsiCo Inc,Consumer Staples,52
+PG,The Procter & Gamble Company,Consumer Staples,68
+PPG,PPG Industries Inc,Materials,52
+ROP,Roper Technologies Inc,Industrials,31
+ROST,Ross Stores Inc,Consumer Discretionary,29
+SHW,The Sherwin-Williams Company,Materials,46
+SJM,The J.M. Smucker Company,Consumer Staples,26
+SYY,Sysco Corporation,Consumer Staples,54
+TGT,Target Corporation,Consumer Discretionary,52
+TROW,T. Rowe Price Group Inc,Financials,38
+WMT,Walmart Inc,Consumer Staples,51
+XOM,Exxon Mobil Corporation,Energy,41
